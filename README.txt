@@ -8,7 +8,7 @@ I Love Python & Java
     '''
     # Example1 :
     # دیونه -> دیوانه
-    # شما میتونین حتی یک جمله بنویسید دقت کنید جملتونو شکیل بنویسید
+    # تبدیل محاوره به رسمی (شما میتونید بهش یه جمله رو بدید)
     obj = FormalConverter()
     a = obj.get_formal_converter()
     print(a)
