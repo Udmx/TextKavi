@@ -1,19 +1,27 @@
 import requests
-
-from textkavi.Authentication import Authentication
+from textkavi.Authentication import auth
 from textkavi.config import url_formal_converter
 
 
 class FormalConverter:
+    def __init__(self):
+        self.text = ''
+
     def get_formal_converter(self):
-        auth = Authentication()
-        token = auth.get_token_key()
-        input_text = input("Please write text (farsi or english):")
-        data = '\"' + str(input_text) + '\"'
+
+        input_text = input("Please write text (farsi or english):").strip()
+        data = '\"' + input_text + '\"'
+
         headers = {
             'Content-Type': "application/json",
-            'Authorization': "Bearer " + token,
+            'Authorization': "Bearer " + auth.token,
             'Cache-Control': "no-cache"
         }
-        response = requests.request("POST", url_formal_converter, data=data.encode("utf-8"), headers=headers)
-        return response.text
+
+        response = requests.request(
+            "POST", url_formal_converter,
+            data=data.encode("utf-8"), headers=headers
+        )
+
+        self.text = response.text
+
