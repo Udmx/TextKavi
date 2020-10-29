@@ -4,9 +4,16 @@ from textkavi.config import API_KEY, url_authentication
 
 
 class Authentication:
-    ##################### Get Token by Api Key ##########################
+    # Get Token by Api Key
+    def __init__(self):
+        self.token = ''
+
     def get_token_key(self):
-        querystring = {"apikey": API_KEY}
-        response = requests.request("GET", url_authentication, params=querystring)
-        data = json.loads(response.text)
-        return data['token']
+        response = requests.request(
+            "GET", url_authentication, params={'apikey': API_KEY}
+        )
+        self.token = json.loads(response.text)['token']
+
+
+auth = Authentication()
+auth.get_token_key()
